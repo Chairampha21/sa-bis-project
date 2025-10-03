@@ -1,0 +1,26 @@
+.employee-detail {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.detail-header {
+  display:flex;
+  align-items:center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.detail-header .avatar-lg {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  background: url('/images/placeholder-user.png') center/cover no-repeat;
+}
+.records-wrap {
+  margin-top: 12px;
+}
+.record-form {
+  display:flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+.record-form .input { max-width: 200px; }
+.btn-danger { background: var(--danger); }

@@ -1,0 +1,40 @@
+/* App-level layout for header / main content */
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.app-header {
+  background: var(--card);
+  border-bottom: 1px solid #eef2f7;
+  padding: 12px 20px;
+  box-shadow: 0 4px 14px rgba(2,6,23,0.03);
+}
+.app-content {
+  flex: 1;
+  padding: 28px 0;
+}
+.app-footer {
+  padding: 14px 20px;
+  background: transparent;
+  border-top: 1px solid rgba(15,23,42,0.03);
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand .logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow: 0 6px 18px rgba(37,99,235,0.12);
+}
+.brand h1 {
+  font-size: 18px;
+  margin: 0;
+}

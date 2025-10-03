@@ -1,0 +1,197 @@
+.salary-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* ===== Green Title Bar ===== */
+.title-bar {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  background: var(--green);
+  color: #fff;
+  padding: .75rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+.title-bar .spacer { flex: 1; }
+
+.back-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.25);
+  color: #fff;
+  padding: .4rem .65rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.back-chip:hover { background: rgba(255,255,255,.25); }
+
+.title {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+.title-icon { font-size: 1.2rem; }
+
+/* ===== Panels ===== */
+.panel {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.panel-title {
+  color: var(--green-dark);
+  font-weight: 700;
+  border-bottom: 2px solid var(--green);
+  padding-bottom: .5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.emp-brief {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  gap: .75rem 1rem;
+  color: var(--gray-dark);
+}
+.emp-brief strong { color: var(--green-dark); }
+.month-select { padding: .35rem .5rem; border-radius: 8px; border: 1px solid rgba(0,0,0,0.15); }
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+  gap: 1rem;
+}
+
+.card-section {
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+}
+
+.section-head {
+  font-weight: 700;
+  color: var(--green-dark);
+  margin-bottom: .75rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: .35rem 0;
+  color: var(--gray-dark);
+}
+.row strong { color: var(--green-dark); }
+.row.total {
+  border-top: 1px dashed rgba(0,0,0,0.2);
+  margin-top: .35rem;
+  padding-top: .6rem;
+  font-weight: 700;
+}
+
+.netpay {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f5fff6;
+  border: 1px solid var(--green);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.netpay-amount {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--green-dark);
+}
+
+/* ===== Emp brief: 4 คอลัมน์ ===== */
+/* Emp brief: 4 คอลัมน์ — ปรับสัดส่วนให้คอลัมน์ตัวกรองกว้างขึ้น */
+.emp-brief.emp-brief-4 {
+  display: grid;
+  grid-template-columns: 1.1fr 1.1fr 1.6fr auto; /* เดิม repeat(4, ...) */
+  gap: .75rem 1rem;
+  align-items: flex-start;
+}
+
+/* ลดขนาด select ให้พอดีบรรทัด */
+.month-select {
+  padding: .32rem .5rem;       /* เดิม .35rem .5rem */
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.15);
+  max-width: 220px;            /* กันยาวเกิน */
+}
+
+/* ปุ่มให้เล็กลง */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;                  /* เดิม .5rem */
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.btn-export,
+.btn-export-outline {
+  padding: .38rem .6rem;       /* เดิม .5rem .75rem */
+  font-size: .9rem;            /* เดิม inherit (~1rem) */
+  border-radius: 6px;          /* เดิม 8px */
+  line-height: 1.2;
+}
+
+.btn-export svg,
+.btn-export-outline svg {
+  font-size: .95em;            /* ไอคอนย่อเล็กน้อย */
+}
+
+/* ปุ่มดาวน์โหลด */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.btn-export {
+  background: var(--green-dark);
+  color: #fff;
+  border: none;
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+}
+.btn-export:hover { background: var(--green); }
+
+.btn-export-outline {
+  background: transparent;
+  color: var(--green-dark);
+  border: 1px solid var(--green);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+}
+.btn-export-outline:hover { background: #f4fff6; }
+
+/* Responsive: ลดคอลัมน์เมื่อตีบ */
+@media (max-width: 1024px) {
+  .emp-brief.emp-brief-4 { grid-template-columns: repeat(2, minmax(220px,1fr)); }
+}
+@media (max-width: 640px) {
+  .emp-brief.emp-brief-4 { grid-template-columns: 1fr; }
+}

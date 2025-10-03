@@ -1,0 +1,140 @@
+.employee-home {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Header ด้านบน */
+.employee-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--green);
+  padding: 0.8rem 2rem;
+  border-radius: 10px;
+  color: var(--white);
+  margin-bottom: 2rem;
+}
+
+.header-left h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--white);
+}
+
+.employee-name {
+  font-weight: 500;
+}
+
+.logout-btn {
+  background: var(--green-dark);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  color: var(--white);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: var(--green-light);
+}
+
+/* Greeting */
+.employee-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.employee-header h2 {
+  font-size: 2rem;
+  color: var(--green-dark);
+  margin-bottom: 0.5rem;
+}
+
+.employee-header p {
+  color: var(--gray-dark);
+}
+
+/* Grid Card */
+.employee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Card */
+.employee-card {
+  text-align: center;
+  padding: 2rem;
+  border-top: 5px solid var(--green);
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.employee-card .card-icon {
+  font-size: 3rem;
+  color: var(--green);
+  margin-bottom: 1rem;
+}
+
+.employee-card h3 {
+  color: var(--green-dark);
+  margin-bottom: 0.5rem;
+}
+
+.employee-card p {
+  color: var(--gray-dark);
+  margin-bottom: 1.5rem;
+}
+
+/* Employee Detail */
+/* Employee Detail */
+.employee-detail {
+  margin: 2rem 0;
+  padding: 1.5rem 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* ทำหัวข้อ ข้อมูลพนักงาน ให้เด่น */
+.employee-detail h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--green);
+}
+
+.employee-detail h3::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 24px;
+  background: var(--green);
+  border-radius: 4px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  /* 2 คอลัมน์ */
+  gap: 1rem 2rem;
+}

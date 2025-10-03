@@ -1,0 +1,78 @@
+.login-container {
+  max-width: 400px;
+  margin: 6rem auto;
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* effect ตอน hover container */
+.login-container:hover {
+  transform: translateY(-3px);
+}
+
+.login-container h2 {
+  margin-bottom: 2rem;
+  color: var(--green-dark);
+  font-weight: 600;
+}
+
+.login-container input,
+.login-container select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 1rem;
+}
+
+/* focus effect */
+.login-container input:focus,
+.login-container select:focus {
+  border-color: var(--green-dark);
+  box-shadow: 0 0 5px rgba(0, 128, 0, 0.2);
+}
+
+/* ถ้า value ยังเป็น "" ให้แสดงเทา */
+.login-container select:invalid {
+  color: #aaa;
+  opacity: 1;
+}
+
+/* ปุ่ม */
+.login-container button {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--green-dark);
+  color: var(--white);
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+/* ปุ่ม hover */
+.login-container button:hover {
+  background: #046e3d; /* เขียวเข้มกว่า */
+  transform: translateY(-2px);
+}
+
+/* ปุ่มตอนกด */
+.login-container button:active {
+  transform: scale(0.98);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-container {
+    margin: 3rem 1rem;
+    padding: 2rem;
+  }
+}

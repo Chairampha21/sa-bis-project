@@ -1,0 +1,131 @@
+/* global.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap');
+
+:root {
+  --green-dark: #1b5e20;
+  --green: #2e7d32;
+  --green-light: #4caf50;
+  --green-mint: #a5d6a7;
+  --green-bg: #e8f5e9;
+  --white: #ffffff;
+  --gray-light: #f1f1f1;
+  --gray-dark: #555;
+  --text: #333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Prompt', sans-serif;
+}
+
+body {
+  background: var(--green-bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+  background: linear-gradient(90deg, var(--green-dark), var(--green));
+  color: var(--white);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.navbar a {
+  color: var(--white);
+  margin-left: 1rem;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.navbar a:hover {
+  color: var(--green-mint);
+}
+
+/* Card */
+.card {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.18);
+}
+
+/* Buttons */
+button, .btn {
+  padding: 0.7rem 1.4rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  color: var(--white);
+  font-weight: 600;
+  transition: 0.3s;
+  box-shadow: 0 3px 8px rgba(46, 125, 50, 0.3);
+}
+
+button:hover, .btn:hover {
+  background: linear-gradient(135deg, var(--green-dark), var(--green));
+  transform: translateY(-2px);
+}
+
+/* Input */
+input, select, textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid var(--green-light);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  transition: 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 8px var(--green-mint);
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table th, .table td {
+  padding: 1rem;
+  text-align: left;
+}
+
+.table th {
+  background: var(--green);
+  color: var(--white);
+}
+
+.table tr:nth-child(even) {
+  background: var(--green-bg);
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background: var(--green-dark);
+  color: var(--white);
+  margin-top: 2rem;
+}

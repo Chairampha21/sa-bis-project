@@ -1,0 +1,21 @@
+.employee-list-wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.search-row {
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.employee-item {
+  padding: 12px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #f0f3f8;
+  margin-bottom: 8px;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+}
+.employee-item .meta { color: var(--muted); font-size: 14px; }
