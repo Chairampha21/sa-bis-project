@@ -19,3 +19,51 @@
   justify-content: space-between;
 }
 .employee-item .meta { color: var(--muted); font-size: 14px; }
+
+.employee-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--green);
+  padding: 0.8rem 2rem;
+  border-radius: 10px;
+  color: var(--white);
+  margin-bottom: 2rem;
+  gap: 1.5rem;
+}
+
+/* กล่องกลาง */
+.header-middle {
+  display: flex;
+  gap: 1rem;
+}
+
+.header-middle .mini-card {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--green-dark);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.header-middle .mini-card:hover {
+  background: var(--green-light);
+}
+
+.header-middle .personal-card {
+  background: var(--white);
+  color: var(--green-dark);
+  font-weight: 700;
+  border: 2px solid var(--green-dark);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  transition: 0.3s;
+}
+
+.header-middle .personal-card:hover {
+  background: var(--green-light);
+  color: var(--white);
+}
+

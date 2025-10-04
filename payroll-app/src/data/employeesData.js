@@ -6,7 +6,7 @@ export const employeesData = [
     startDate: "2021-01-15" },
 
   { id: 2,  username: "bob",     password: "bob123",
-    name: "สมหญิง รัตนา", department: "ฝ่ายวิจัยและพัฒนา", role: "employee",
+    name: "น้องมาย ชัยรัมภา", department: "ฝ่ายวิจัยและพัฒนา", role: "employee",
     address: "45/7 หมู่ 3 ต.คลองหนึ่ง อ.คลองหลวง ปทุมธานี 12120",
     phone: "081-222-2202", email: "bob@company.com",
     startDate: "2022-03-01" },

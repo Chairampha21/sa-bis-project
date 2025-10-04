@@ -4,11 +4,12 @@ import LoginPage from "./pages/LoginPage";
 import EmployeeHomePage from "./pages/EmployeeHomePage";
 import HRHomePage from "./pages/HRHomePage";
 import NotFound from "./components/NotFound";
-import SalaryHistoryPage from "./pages/SalaryHistoryPage";
 import EmployeeListPage from "./pages/EmployeeListPage";
 import EmployeeDetailPage from "./pages/EmployeeDetailPage";
 import HRTransactionPage from "./pages/HRTransactionPage";
 import SalaryDetailPage from "./pages/SalaryDetailPage";
+import EmployeeTimePage from "./pages/EmployeeTimePage";
+import ReportIssuePage from "./pages/ReportIssuePage";
 import './App.css';
 
 function App() {
@@ -34,15 +35,6 @@ function App() {
           element={
             user?.role?.toLowerCase() === "hr"
               ? <HRHomePage user={user} />
-              : <Navigate to="/" />
-          }
-        />
-
-        <Route
-          path="/employee/history"
-          element={
-            user?.role?.toLowerCase() === "employee"
-              ? <SalaryHistoryPage user={user} />
               : <Navigate to="/" />
           }
         />
@@ -74,8 +66,33 @@ function App() {
           }
         />
 
-        <Route path="/salary" element={<SalaryDetailPage />} />
+        <Route 
+          path="/salary" 
+          element={
+            user?.role?.toLowerCase() === "employee"
+              ? <SalaryDetailPage user={user} />
+              : <Navigate to="/" />
+          }
+        />
 
+        <Route
+          path="/time"
+          element={
+            user?.role?.toLowerCase() === "employee"
+              ? <EmployeeTimePage user={user} />
+              : <Navigate to="/" />
+          }
+        />
+
+
+        <Route
+          path="/report"
+          element={
+            user?.role?.toLowerCase() === "employee"
+              ? <ReportIssuePage user={user} />
+              : <Navigate to="/" />
+          }
+        />
 
         {/* 404 */}
         <Route path="*" element={<NotFound />} />

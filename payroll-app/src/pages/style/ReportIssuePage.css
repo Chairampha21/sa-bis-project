@@ -1,0 +1,158 @@
+.employee-home {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.employee-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--green);
+  padding: 0.8rem 2rem;
+  border-radius: 10px;
+  color: var(--white);
+  margin-bottom: 2rem;
+}
+
+.header-middle {
+  display: flex;
+  gap: 1rem;
+}
+
+.header-middle .mini-card {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--green-dark);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 600;
+}
+
+.header-middle .mini-card:hover {
+  background: var(--green-light);
+  color: #fff;
+}
+
+.header-middle .mini-card.active {
+  background: #fff;
+  color: var(--green-dark);
+  border: 2px solid var(--green-dark);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--white);
+}
+
+.logout-btn {
+  background: var(--green-dark);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  color: var(--white);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: var(--green-light);
+}
+
+/* ===== Report Section ===== */
+.report-section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.report-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.5rem;
+  color: var(--green-dark);
+  border-bottom: 2px solid var(--green);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.report-subtext {
+  color: var(--gray-dark);
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.report-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.report-form textarea {
+  width: 100%;
+  min-height: 150px;
+  resize: vertical;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.report-form textarea:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+}
+
+.btn-submit {
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--green-dark);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-submit:hover {
+  background: var(--green);
+}
+
+.report-success {
+  margin-top: 1rem;
+  background: #f1fff4;
+  color: var(--green-dark);
+  border: 1px solid var(--green);
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  font-weight: 600;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+/* subtle fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

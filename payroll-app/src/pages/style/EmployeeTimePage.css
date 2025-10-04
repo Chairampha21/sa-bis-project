@@ -1,0 +1,135 @@
+.time-dashboard {
+  margin: 1.5rem 0;
+}
+
+.time-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.summary-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.summary-card.combo {
+  border-top: 5px solid #27ae60;
+  background: #f9fff9;
+}
+
+.summary-card.combo h4 {
+  font-size: 1.1rem;
+  color: #1f8e46;
+  margin-bottom: 0.5rem;
+}
+
+.present-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.present-section {
+  flex: 1;
+  text-align: center;
+}
+
+.present-section h5 {
+  color: #2c3e50;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.present-section p {
+  margin: 0.2rem 0;
+  font-weight: 500;
+}
+
+.present-section.left p:nth-child(2) {
+  color: #27ae60;
+}
+
+.present-section.right p:nth-child(2) {
+  color: #e67e22;
+}
+
+.small-note {
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  color: #7f8c8d;
+}
+
+/* สีกรอบอื่น ๆ */
+.summary-card.orange {
+  border-top: 5px solid #f39c12;
+}
+.summary-card.teal {
+  border-top: 5px solid #1abc9c;
+}
+.summary-card.red {
+  border-top: 5px solid #e74c3c;
+}
+.summary-card.gray {
+  border-top: 5px solid #95a5a6;
+}
+
+/* ตาราง */
+.time-table {
+  margin-top: 2rem;
+  overflow-x: auto;
+}
+
+.time-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.time-table th,
+.time-table td {
+  padding: 0.8rem;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.time-table thead {
+  background: var(--green);
+  color: #fff;
+}
+
+.tag {
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.tag.ontime {
+  background: #89eeb3;
+}
+.tag.late {
+  background: #f0af76;
+}
+
+.holiday {
+  background: #ecf5ff;
+  color: #3498db;
+  font-weight: bold;
+}
+
+.bell-icon {
+  font-size: 1.3rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}

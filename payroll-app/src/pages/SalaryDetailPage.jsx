@@ -1,18 +1,19 @@
 import React, { useMemo, useState, useEffect } from "react";
 import "./style/SalaryDetailPage.css";
+import "./style/EmployeeHomePage.css";
 import { useNavigate } from "react-router-dom";
 import { employeesData } from "../data/employeesData";
 import payrollData from "../data/payrollData";
 import {
-  FaChevronLeft, FaCalendarAlt, FaUser, FaBuilding,
-  FaIdCard, FaUserTie, FaPrint
+  FaMoneyCheckAlt, FaUser, FaBuilding,
+  FaIdCard, FaUserTie, FaPrint, FaHistory, FaBell, FaExclamationCircle
 } from "react-icons/fa";
 
 const thMonthLabel = (ym) => {
   if (!ym || ym.length < 7) return "-";
   const [y, m] = ym.split("-").map(Number);
   const d = new Date(y, (m || 1) - 1, 1);
-  return d.toLocaleDateString("th-TH", { month: "long" }); // แสดงเฉพาะชื่อเดือน
+  return d.toLocaleDateString("th-TH", { month: "long" });
 };
 
 const buddhistYear = (y) => (y ? Number(y) + 543 : "");
@@ -37,7 +38,6 @@ const SalaryDetailPage = () => {
     [loggedInUser]
   );
 
-  // รหัส + ชื่อตำแหน่งจาก role
   const empCode = useMemo(
     () =>
       employee?.employeeCode
@@ -77,27 +77,24 @@ const SalaryDetailPage = () => {
     if (yearOptions.length && !selectedYear) setSelectedYear(yearOptions[0]);
   }, [yearOptions, selectedYear]);
 
-  // เดือนที่อยู่ในปีที่เลือก (ใหม่ → เก่า)
+  // เดือนของปีที่เลือก (ใหม่ → เก่า)
   const monthsForYear = useMemo(() => {
     if (!selectedYear) return [];
     return allMonths.filter((m) => m.startsWith(`${selectedYear}-`));
   }, [allMonths, selectedYear]);
 
-  // เพิ่ม "ALL" เป็นตัวเลือกแรก
   const monthsForYearWithAll = useMemo(
     () => ["ALL", ...monthsForYear],
     [monthsForYear]
   );
 
-  // ตั้งเดือนเริ่มต้น
   useEffect(() => {
     if (!monthsForYear.length) return;
     if (!selectedMonth || !monthsForYear.includes(selectedMonth)) {
-      setSelectedMonth(monthsForYear[0]); // เดือนล่าสุดของปีนั้น
+      setSelectedMonth(monthsForYear[0]);
     }
   }, [monthsForYear, selectedMonth]);
 
-  // ถ้าเลือก ALL: รายการทุกเดือนของปีนั้น (เรียงใหม่→เก่า)
   const yearRows = useMemo(() => {
     if (!selectedYear) return [];
     return myPayrolls
@@ -105,7 +102,6 @@ const SalaryDetailPage = () => {
       .sort((a, b) => b.month.localeCompare(a.month));
   }, [myPayrolls, selectedYear]);
 
-  // รวมยอดทั้งปีเมื่อ ALL
   const yearTotals = useMemo(() => {
     return yearRows.reduce(
       (acc, r) => {
@@ -122,13 +118,12 @@ const SalaryDetailPage = () => {
     );
   }, [yearRows]);
 
-  // เดือนเดียวที่เลือก
   const pay = useMemo(() => {
     const empty = {
       baseSalary: 0, allowance: 0, ot: 0, bonus: 0,
       tax: 0, social: 0, provident: 0, otherDeduct: 0,
     };
-    if (selectedMonth === "ALL") return empty; // โหมด ALL ไม่ใช้ตัวนี้
+    if (selectedMonth === "ALL") return empty;
     return myPayrolls.find((p) => p.month === selectedMonth) || empty;
   }, [myPayrolls, selectedMonth]);
 
@@ -144,18 +139,62 @@ const SalaryDetailPage = () => {
 
   return (
     <div className="salary-container">
-      {/* ===== Green Title Bar ===== */}
-      <div className="title-bar">
-        <button className="back-chip" onClick={() => navigate(-1)}>
-          <FaChevronLeft /> กลับ
-        </button>
-        <div className="title">รายละเอียดเงินเดือน</div>
-        <div className="spacer" />
-      </div>
+      {/* ===== Header แบบเดียวกับ EmployeeHomePage ===== */}
+      <header className="employee-header-top">
+        <div className="header-left">
+          <h2>Payroll</h2>
+        </div>
+
+        <div className="header-middle">
+          <div
+            className={`mini-card ${window.location.pathname === "/employee" ? "active" : ""}`}
+            onClick={() => navigate("/employee")}>
+            <FaUser/>
+            <span>ข้อมูลส่วนตัว</span>
+          </div>
+
+          <div
+            className={`mini-card ${window.location.pathname === "/salary" ? "active" : ""}`}
+            onClick={() => navigate("/salary")}>
+            <FaMoneyCheckAlt />
+            <span>ข้อมูลเงินเดือน</span>
+          </div>
+
+          <div
+            className={`mini-card ${window.location.pathname === "/time" ? "active" : ""}`}
+            onClick={() => navigate("/time")}>
+            <FaHistory />
+            <span>ข้อมูลเวลาการทำงาน</span>
+          </div>
+
+          <div
+            className={`mini-card ${window.location.pathname === "/report" ? "active" : ""}`}
+            onClick={() => navigate("/report")}>
+            <FaExclamationCircle /> 
+            <span>แจ้งปัญหา</span>
+          </div>
+        </div>
+
+        <div className="header-right">
+          <FaBell />
+          <img src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t1.6435-9/66432336_2341250949495752_6935145544675229696_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeFrBT17u_BCRVC43TF5p4n9BboTGA4ubzIFuhMYDi5vMkqdnUvpdG11Mg6APFXnLBbTPQJ1n3Svu76I4ZnxVlaI&_nc_ohc=Z87OxZkiFt8Q7kNvwHfz_Hk&_nc_oc=AdkFLzipbcH25imsMR-GC49oohomr8J5GhkJ7Zjl6-VUiiMyPOrCUhbkmFG_4QOHxNQ&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=UK2JKMhlaRnz081vbeHKHA&oh=00_AffiEnDOyZv-wZ_5IDE9QBbGni-VdXgUTK9lb9-xp0ywVg&oe=69083BEE" alt="profile" className="profile-pic" />
+          <span className="employee-name">{employee.name}</span>
+          <button
+            className="btn logout-btn"
+            onClick={() => {
+              localStorage.removeItem("username");
+              localStorage.removeItem("role");
+              navigate("/");
+            }}
+          >
+            Logout
+          </button>
+        </div>
+      </header>
 
       {/* ===== ข้อมูลพนักงาน ===== */}
-      <div className="panel panel-employee">
-        <div className="panel-title">ข้อมูลพนักงาน</div>
+      <div className="employee-detail">
+        <h3>ข้อมูลส่วนตัว</h3>
 
         <div className="emp-brief emp-brief-4">
           <div className="col">
@@ -164,14 +203,13 @@ const SalaryDetailPage = () => {
           </div>
 
           <div className="col">
-            <div className="row-item"><FaUserTie /> <strong>ตำแหน่ง:</strong> {positionTitle}</div>
             <div className="row-item"><FaBuilding /> <strong>แผนก:</strong> {employee.department}</div>
+            <div className="row-item"><FaUserTie /> <strong>ตำแหน่ง:</strong> {positionTitle}</div>
           </div>
 
-          {/* เดือน + ปี (บรรทัดเดียว) */}
           <div className="col">
             <div className="row-item" style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "nowrap" }}>
-              <FaCalendarAlt />
+              
               <strong>เดือน:</strong>
               <select
                 className="month-select"
@@ -179,15 +217,11 @@ const SalaryDetailPage = () => {
                 onChange={(e) => setSelectedMonth(e.target.value)}
                 style={{ marginLeft: ".5rem" }}
               >
-                {monthsForYearWithAll.length ? (
-                  monthsForYearWithAll.map((m) => (
-                    <option key={m} value={m}>
-                      {m === "ALL" ? "ทุกเดือน" : thMonthLabel(m)}
-                    </option>
-                  ))
-                ) : (
-                  <option value="">-</option>
-                )}
+                {monthsForYearWithAll.map((m) => (
+                  <option key={m} value={m}>
+                    {m === "ALL" ? "ทุกเดือน" : thMonthLabel(m)}
+                  </option>
+                ))}
               </select>
 
               <strong style={{ marginLeft: "1rem" }}>ปี:</strong>
@@ -197,18 +231,13 @@ const SalaryDetailPage = () => {
                 onChange={(e) => setSelectedYear(e.target.value)}
                 style={{ marginLeft: ".5rem" }}
               >
-                {yearOptions.length ? (
-                  yearOptions.map((y) => (
-                    <option key={y} value={y}>{buddhistYear(y)}</option>
-                  ))
-                ) : (
-                  <option value="">-</option>
-                )}
+                {yearOptions.map((y) => (
+                  <option key={y} value={y}>{buddhistYear(y)}</option>
+                ))}
               </select>
             </div>
           </div>
 
-          {/* ปุ่มพิมพ์ / PDF */}
           <div className="col actions">
             <button className="btn-export-outline" onClick={printPage}>
               <FaPrint /> พิมพ์ / PDF
@@ -218,14 +247,13 @@ const SalaryDetailPage = () => {
       </div>
 
       {/* ===== รายละเอียดเงินเดือน ===== */}
-      <div className="panel panel-pay">
-        <div className="panel-title">
+      <div className="employee-detail">
+        <h3>
           {selectedMonth === "ALL"
             ? `รอบเดือน: ทุกเดือน พ.ศ. ${buddhistYear(selectedYear)}`
             : `รอบเดือน: ${thMonthLabel(selectedMonth)} ${buddhistYear(selectedYear)}`}
-        </div>
+        </h3>
 
-        {/* โหมดแสดงทั้งหมด */}
         {selectedMonth === "ALL" ? (
           <>
             <div className="grid-2">
@@ -256,7 +284,6 @@ const SalaryDetailPage = () => {
               })}
             </div>
 
-            {/* รวมทั้งปี */}
             <div className="netpay" style={{ marginTop: "1rem" }}>
               <div>
                 <div><strong>รวมรายรับทั้งปี</strong></div>
@@ -273,7 +300,6 @@ const SalaryDetailPage = () => {
             </div>
           </>
         ) : (
-          /* โหมดเดือนเดียว */
           <>
             <div className="grid-2">
               <div className="card-section">
