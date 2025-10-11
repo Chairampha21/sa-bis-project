@@ -3,7 +3,7 @@ import "./style/EmployeeTimePage.css";
 import { useNavigate } from "react-router-dom";
 import { employeesData } from "../data/employeesData";
 import {
-    FaMoneyCheckAlt,
+    FaMoneyBillWave,
     FaHistory,
     FaBell,
     FaIdCard,
@@ -11,6 +11,7 @@ import {
     FaUserTie,
     FaExclamationCircle,
     FaUser,
+    FaChartBar,
 } from "react-icons/fa";
 
 // ===== ฟังก์ชันจำลองข้อมูลเวลาทำงาน =====
@@ -44,7 +45,7 @@ const generateMonthlyData = (year, month) => {
     return data;
 };
 
-const EmployeeTimePage = () => {
+const HRTimePage = () => {
     const navigate = useNavigate();
     const loggedInUser = (localStorage.getItem("username") || "").toLowerCase();
     const employee = employeesData.find(
@@ -95,43 +96,55 @@ const EmployeeTimePage = () => {
     return (
         <div className="employee-home">
             {/* ===== Header ===== */}
-            <header className="employee-header-top">
-                <div className="header-left">
-                    <h2>Payroll</h2>
+            <header className="hr-header-top">
+                <div className="hr-header-left">
+                    <h3>Payroll</h3>
                 </div>
 
-                <div className="header-middle">
+                <div className="hr-header-middle">
                     <div
-                        className={`mini-card ${window.location.pathname === "/employee" ? "active" : ""
-                            }`}
-                        onClick={() => navigate("/employee")}
+                        className={`mini-card ${window.location.pathname === "/hr" ? "active" : ""}`}
+                        onClick={() => navigate("/hr")}
                     >
                         <FaUser />
                         <span>ข้อมูลส่วนตัว</span>
                     </div>
 
                     <div
-                        className={`mini-card ${window.location.pathname === "/salary" ? "active" : ""
-                            }`}
-                        onClick={() => navigate("/salary")}
+                        className={`mini-card ${window.location.pathname === "/employeedetail" ? "active" : ""}`}
+                        onClick={() => navigate("/employeedetail")}
                     >
-                        <FaMoneyCheckAlt />
+                        <FaIdCard />
+                        <span>ข้อมูลพนักงาน</span>
+                    </div>
+
+                    <div
+                        className={`mini-card ${window.location.pathname.startsWith("/hrsalary") ? "active" : ""}`}
+                        onClick={() => navigate("/hrsalary")}
+                    >
+                        <FaMoneyBillWave />
                         <span>ข้อมูลเงินเดือน</span>
                     </div>
 
                     <div
-                        className={`mini-card ${window.location.pathname === "/time" ? "active" : ""
-                            }`}
-                        onClick={() => navigate("/time")}
+                        className={`mini-card ${window.location.pathname === "/overview" ? "active" : ""}`}
+                        onClick={() => navigate("/overview")}
                     >
-                        <FaHistory />
-                        <span>ข้อมูลเวลาการทำงาน</span>
+                        <FaChartBar />
+                        <span>ภาพรวมเงินเดือน</span>
                     </div>
 
                     <div
-                        className={`mini-card ${window.location.pathname === "/report" ? "active" : ""
-                            }`}
-                        onClick={() => navigate("/report")}
+                        className={`mini-card ${window.location.pathname === "/hrtime" ? "active" : ""}`}
+                        onClick={() => navigate("/hrtime")}
+                    >
+                        <FaHistory />
+                        <span>เวลาทำงาน</span>
+                    </div>
+
+                    <div
+                        className={`mini-card ${window.location.pathname === "/hrreport" ? "active" : ""}`}
+                        onClick={() => navigate("/hrreport")}
                     >
                         <FaExclamationCircle />
                         <span>แจ้งปัญหา</span>
@@ -278,10 +291,10 @@ const EmployeeTimePage = () => {
                                             <td>
                                                 <span
                                                     className={`tag ${d.status.includes("สาย") || d.status.includes("ออกก่อน")
-                                                            ? "late"
-                                                            : d.status.includes("OT")
-                                                                ? "ot"
-                                                                : "ontime"
+                                                        ? "late"
+                                                        : d.status.includes("OT")
+                                                            ? "ot"
+                                                            : "ontime"
                                                         }`}
                                                 >
                                                     {d.status}
@@ -300,4 +313,4 @@ const EmployeeTimePage = () => {
     );
 };
 
-export default EmployeeTimePage;
+export default HRTimePage;

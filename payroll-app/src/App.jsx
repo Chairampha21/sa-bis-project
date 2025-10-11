@@ -3,10 +3,13 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import LoginPage from "./pages/LoginPage";
 import EmployeeHomePage from "./pages/EmployeeHomePage";
 import HRHomePage from "./pages/HRHomePage";
+import HRSalary from "./pages/HRSalary";
 import NotFound from "./components/NotFound";
-import EmployeeListPage from "./pages/EmployeeListPage";
+import HROverviewPage from "./pages/HROverviewPage";
+import HRTimePage from "./pages/HRTimePage";
+// import EmployeeListPage from "./pages/EmployeeListPage";
 import EmployeeDetailPage from "./pages/EmployeeDetailPage";
-import HRTransactionPage from "./pages/HRTransactionPage";
+import HREmployeeSalaryPage from "./pages/HREmployeeSalaryPage";
 import SalaryDetailPage from "./pages/SalaryDetailPage";
 import EmployeeTimePage from "./pages/EmployeeTimePage";
 import ReportIssuePage from "./pages/ReportIssuePage";
@@ -40,28 +43,19 @@ function App() {
         />
 
         <Route
-          path="/hr/employees"
+          path="/hr/salary/:id"
           element={
             user?.role?.toLowerCase() === "hr"
-              ? <EmployeeListPage />
+              ? <HREmployeeSalaryPage user={user} />
               : <Navigate to="/" />
           }
         />
 
-        <Route
-          path="/hr/employee/:username"
+        <Route 
+          path="/employeedetail" 
           element={
             user?.role?.toLowerCase() === "hr"
-              ? <EmployeeDetailPage />
-              : <Navigate to="/" />
-          }
-        />
-
-        <Route
-          path="/hr/transaction"
-          element={
-            user?.role?.toLowerCase() === "hr"
-              ? <HRTransactionPage />
+              ? <EmployeeDetailPage user={user} />
               : <Navigate to="/" />
           }
         />
@@ -71,6 +65,33 @@ function App() {
           element={
             user?.role?.toLowerCase() === "employee"
               ? <SalaryDetailPage user={user} />
+              : <Navigate to="/" />
+          }
+        />
+
+        <Route 
+          path="/hrsalary" 
+          element={
+            user?.role?.toLowerCase() === "hr"
+              ? <HRSalary user={user} />
+              : <Navigate to="/" />
+          }
+        />
+
+        <Route 
+          path="/hrtime" 
+          element={
+            user?.role?.toLowerCase() === "hr"
+              ? <HRTimePage user={user} />
+              : <Navigate to="/" />
+          }
+        />
+
+        <Route 
+          path="/overview" 
+          element={
+            user?.role?.toLowerCase() === "hr"
+              ? <HROverviewPage user={user} />
               : <Navigate to="/" />
           }
         />

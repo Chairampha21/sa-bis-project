@@ -2,7 +2,7 @@ import React from "react";
 import "./style/EmployeeHomePage.css";
 import {
   FaMoneyCheckAlt, FaHistory, FaIdCard, FaUserTie,
-  FaHome, FaPhone, FaEnvelope, FaCalendarAlt, FaBuilding, FaBell, FaExclamationCircle, FaUser
+  FaHome, FaPhone, FaEnvelope, FaCalendarAlt, FaBuilding, FaBell, FaExclamationCircle, FaUser, FaUniversity, FaCreditCard, FaBriefcase
 } from "react-icons/fa";
 import { employeesData } from "../data/employeesData";
 import { useNavigate } from "react-router-dom";
@@ -99,6 +99,9 @@ const EmployeeHomePage = () => {
           <div className="detail-item"><FaBuilding /> <strong>แผนก:</strong> {employee.department || "-"}</div>
           <div className="detail-item"><FaCalendarAlt /> <strong>วันเริ่มงาน:</strong> {formatThaiDate(employee.startDate)}</div>
           <div className="detail-item"><FaUserTie /> <strong>ตำแหน่ง:</strong> {employee.role === "hr" ? "ฝ่ายบุคคล (HR)" : "พนักงาน"}</div>
+          <div className="detail-item"><FaUniversity /> <strong>ธนาคาร:</strong> {employee.bankName || "-"}</div>
+          <div className="detail-item"><FaBriefcase  /> <strong>ประเภทพนักงาน:</strong> {employee.employeeType || "-"}</div>
+          <div className="detail-item"><FaCreditCard  /> <strong>เลขบัญชี:</strong> {employee.bankAccount || "-"}</div>
         </div>
       </div>
     </div>

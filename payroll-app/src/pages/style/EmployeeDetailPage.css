@@ -1,28 +1,324 @@
+/* ===== กล่องข้อมูลพนักงาน ===== */
 .employee-detail {
-  max-width: 900px;
-  margin: 0 auto;
+  background: #ffffff; /* ✅ พื้นหลังเฉพาะในกรอบ */
+  border-radius: 12px;
+  padding: 1.5rem 1.8rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* เพิ่มมิติ */
+  margin-top: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
-.detail-header {
-  display:flex;
-  align-items:center;
-  gap: 16px;
-  margin-bottom: 12px;
+
+/* ===== หัวข้อส่วนข้อมูล ===== */
+.employee-detail h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--green-dark, #1b5e20);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+  border-bottom: 2px solid var(--green, #2e7d32);
+  padding-bottom: 0.5rem;
 }
-.detail-header .avatar-lg {
-  width: 64px;
-  height: 64px;
+
+.employee-detail h3::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 22px;
+  background: var(--green, #2e7d32);
+  border-radius: 4px;
+}
+
+/* ===== ส่วนค้นหา ===== */
+.search-section {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.search-section input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.search-section input:focus {
+  outline: none;
+  border-color: var(--green, #2e7d32);
+  box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.15);
+}
+
+.search-btn {
+  background: var(--green, #2e7d32);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: 0.3s;
+}
+
+.search-btn:hover {
+  background: var(--green-dark, #1b5e20);
+}
+
+/* ===== ตารางพนักงาน ===== */
+.employee-table {
+  width: 100%;
+  border-collapse: collapse;
   border-radius: 10px;
-  background: url('/images/placeholder-user.png') center/cover no-repeat;
+  overflow: hidden;
 }
-.records-wrap {
-  margin-top: 12px;
-}
-.record-form {
-  display:flex;
-  gap: 8px;
-  margin-top: 12px;
-}
-.record-form .input { max-width: 200px; }
-.btn-danger { background: var(--danger); }
 
+.employee-table th {
+  background: var(--green, #2e7d32);
+  color: white;
+  padding: 0.75rem;
+  text-align: center;
+  font-weight: 600;
+}
 
+.employee-table td {
+  padding: 0.75rem;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+.employee-table tr:hover {
+  background: rgba(46, 125, 50, 0.05);
+}
+
+/* ===== ปุ่มจัดการ ===== */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-view {
+  background: var(--green, #2e7d32);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-view:hover {
+  background: var(--green-dark, #1b5e20);
+}
+
+/* ===== ไม่มีข้อมูล ===== */
+.no-data {
+  text-align: center;
+  color: #999;
+  padding: 1rem;
+  font-style: italic;
+}
+
+/* Dual Search Layout */
+.dual-search {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  position: relative;
+}
+
+.search-box {
+  position: relative;
+  flex: 1;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--green);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.suggestions {
+  position: absolute;
+  top: 105%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  max-height: 160px;
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.suggestions li {
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.suggestions li:hover {
+  background: var(--green-light);
+  color: white;
+}
+
+.suggestions .no-result {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+/* Layout การค้นหาแบบ 2 ช่อง */
+.dual-search {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.search-box {
+  position: relative;
+  flex: 1;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--green);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+}
+
+/* กล่องรายการ Auto Complete */
+.suggestions {
+  position: absolute;
+  top: 105%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  max-height: 180px;
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.suggestions li {
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: 0.2s;
+}
+
+.suggestions li:hover {
+  background: var(--green);
+  color: #fff;
+}
+
+.suggestions span {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.suggestions .no-result {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  padding: 0.5rem;
+}
+
+.dual-search {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.search-box {
+  flex: 1;
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--green);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.search-btn {
+  background: var(--green-dark);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.search-btn:hover {
+  background: var(--green-light);
+}
+
+/* 🔽 Auto complete dropdown */
+.suggestions {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 99;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.suggestions li {
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.suggestions li:hover {
+  background: var(--green);
+  color: white;
+}
+
+.suggestions span {
+  color: #555;
+  font-size: 0.85rem;
+}
+
+.suggestions .no-result {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  padding: 0.5rem;
+}
+
+mark {
+  background-color: #ffeb3b;
+  color: #000;
+  padding: 0 2px;
+  border-radius: 3px;
+}

@@ -1,0 +1,66 @@
+.hr-overview-container {
+  background: #f9fafc;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.overview-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #2f4b8f;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+.period-select {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.period-select label {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.period-select select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.chart-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1.5rem;
+}
+
+.chart-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.2rem;
+  width: 48%;
+  text-align: center;
+}
+
+.chart-card h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #2f4b8f;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.total-text {
+  color: #3498db;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}

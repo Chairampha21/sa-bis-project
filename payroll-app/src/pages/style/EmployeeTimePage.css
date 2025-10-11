@@ -1,3 +1,6 @@
+/* ===========================
+   ส่วนสรุปการทำงาน
+=========================== */
 .time-dashboard {
   margin: 1.5rem 0;
 }
@@ -17,6 +20,7 @@
   font-weight: 600;
 }
 
+/* กรอบรวม Entry + Exit */
 .summary-card.combo {
   border-top: 5px solid #27ae60;
   background: #f9fff9;
@@ -81,7 +85,9 @@
   border-top: 5px solid #95a5a6;
 }
 
-/* ตาราง */
+/* ===========================
+   ส่วนตารางเวลาทำงาน
+=========================== */
 .time-table {
   margin-top: 2rem;
   overflow-x: auto;
@@ -102,11 +108,49 @@
   border-bottom: 1px solid #eee;
 }
 
-.time-table thead {
-  background: var(--green);
-  color: #fff;
+/* sticky header + สีพื้นหัวข้อ */
+.scrollable {
+  max-height: 420px; /* แสดงประมาณ 7 วัน */
+  overflow-y: auto;
+  border-radius: 10px;
+  border: 1px solid #ddd;
 }
 
+.scrollable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.scrollable thead th {
+  background-color: #27ae60; /* 💙 สีหัวข้อ */
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  padding: 10px;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.scrollable td,
+.scrollable th {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 8px 10px;
+  text-align: center;
+}
+
+.scrollable tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.scrollable tbody tr:hover {
+  background-color: #e8f0fe;
+}
+
+/* ===========================
+   ป้ายสถานะและวันพิเศษ
+=========================== */
 .tag {
   padding: 0.3rem 0.6rem;
   border-radius: 999px;
@@ -116,18 +160,79 @@
 }
 
 .tag.ontime {
-  background: #89eeb3;
+  background-color: #2ecc71;
+  color: white;
 }
+
 .tag.late {
-  background: #f0af76;
+  background-color: #f39c12;
+  color: white;
+}
+
+.tag.ot {
+  background-color: #3498db;
+  color: white;
+}
+
+.tag.absent {
+  background-color: #e74c3c;
+  color: white;
 }
 
 .holiday {
-  background: #ecf5ff;
+  background-color: #ecf5ff;
   color: #3498db;
   font-weight: bold;
+  text-align: center;
 }
 
+.absent {
+  background-color: #fdecea;
+  color: #e74c3c;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ===========================
+   ส่วนเลือกเดือน
+=========================== */
+.month-select {
+  display: flex;
+  align-items: center; /* ✅ จัดแนวกลางแนวดิ่ง */
+  justify-content: flex-start;
+  gap: 12px;
+  margin: 15px 0 25px;
+  padding: 10px 16px;
+  background: #f9fff9;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.month-select label {
+  font-weight: 600;
+  color: #1f8e46;
+  white-space: nowrap; /* ✅ กันไม่ให้ตัดบรรทัด */
+}
+
+.month-select select {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  line-height: 1.4; /* ✅ เพิ่ม line-height ให้เท่ากัน */
+}
+
+.month-select select:hover {
+  border-color: #27ae60;
+}
+
+/* ===========================
+   ไอคอนและอื่น ๆ
+=========================== */
 .bell-icon {
   font-size: 1.3rem;
   margin-right: 0.5rem;

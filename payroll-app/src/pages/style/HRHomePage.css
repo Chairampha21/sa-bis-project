@@ -100,3 +100,89 @@
   color: var(--gray-dark);
   margin-bottom: 1.5rem;
 }
+
+.hr-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--green);; /* 🔹 น้ำเงิน HR */
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  height: 68px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.hr-header-left h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.hr-header-middle {
+  display: flex;
+  align-items: center;
+  gap: 0.72rem;
+}
+
+.hr-header-middle .mini-card {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--green-dark); /* 🔹 สีเข้มกว่า header */
+  color: #fff;
+  padding: 0.4rem 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.25s;
+  font-weight: 600;
+  font-size: 0.72rem;
+}
+
+.hr-header-middle .mini-card:hover {
+  background: var(--green-dark); /* 🔹 สีอ่อนตอน hover */
+}
+
+.hr-header-middle .mini-card.active {
+  background: #fff;
+  color: var(--green-dark);
+  border: 2px solid var(--green-dark);
+  pointer-events: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.hr-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.hr-header-right .profile-pic {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+
+.hr-header-right .employee-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.hr-header-right .logout-btn {
+  background: #fff;
+  color: var(--green-dark);
+  border: 1px solid #fff;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.hr-header-right .logout-btn:hover {
+  background: #f2f4f8;
+}
