@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { employeesData } from "../data/employeesData";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import "./style/LoginPage.css";
+
 
 function LoginPage({ setUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState(""); // บังคับให้เลือกเอง จะไม่ล็อกเป็น employee โดยอัตโนมัติ
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -15,42 +15,37 @@ function LoginPage({ setUser }) {
 
     const u = username.trim().toLowerCase();
     const p = password.trim();
-    const r = (role || "").trim().toLowerCase();
 
+
+    // ตรวจสอบ username / password โดยไม่ต้องเลือก role
     const user = employeesData.find(
       (emp) =>
         (emp.username || "").toLowerCase().trim() === u &&
-        (emp.password || "").trim() === p &&
-        (emp.role || "").toLowerCase().trim() === r
+        (emp.password || "").trim() === p
     );
 
     if (user) {
       setUser(user);
-
-      // เก็บ username และ role ลง localStorage
       localStorage.setItem("username", user.username);
       localStorage.setItem("role", user.role);
 
-      const roleKey = (user.role || "").toLowerCase();
-      if (roleKey === "hr") navigate("/hr", { replace: true });
-      else if (roleKey === "employee") navigate("/employee", { replace: true });
-      else {
-        Swal.fire({ icon: "warning", title: "Role ไม่รองรับ", text: user.role });
+      // ✅ ถ้ามี lastPath → ไปหน้านั้นเลย
+      const lastPath = localStorage.getItem("lastPath");
+
+      if (lastPath && lastPath !== "/") {
+        navigate(lastPath, { replace: true });
+      } else if (user.role.toLowerCase() === "hr") {
+        navigate("/hr", { replace: true });
+      } else {
+        navigate("/employee", { replace: true });
       }
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "ข้อมูลผิดพลาด",
-        text: "โปรดตรวจสอบ Username, Password หรือ Role",
-        confirmButtonText: "ตกลง",
-      });
     }
   };
 
   return (
     <div className="login-container">
       <div className="login-box">
-        <h2>Login</h2>
+        <h2>เข้าสู่ระบบ</h2>
         <form onSubmit={handleLogin}>
           <input
             type="text"
@@ -69,16 +64,6 @@ function LoginPage({ setUser }) {
             required
             autoComplete="current-password"
           />
-
-          <select
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            required
-          >
-            <option value="" disabled>โปรดเลือกตำแหน่ง</option>
-            <option value="employee">Employee</option>
-            <option value="hr">HR</option>
-          </select>
 
           <button type="submit">Login</button>
         </form>

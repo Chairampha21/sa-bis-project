@@ -2,7 +2,7 @@ import React from "react";
 import "./style/EmployeeHomePage.css";
 import {
   FaMoneyCheckAlt, FaHistory, FaIdCard, FaUserTie,
-  FaHome, FaPhone, FaEnvelope, FaCalendarAlt, FaBuilding, FaBell, FaExclamationCircle, FaUser, FaUniversity, FaCreditCard, FaBriefcase
+  FaHome, FaPhone, FaEnvelope, FaCalendarAlt, FaBuilding, FaExclamationCircle, FaUser, FaUniversity, FaCreditCard, FaBriefcase
 } from "react-icons/fa";
 import { employeesData } from "../data/employeesData";
 import { useNavigate } from "react-router-dom";
@@ -13,10 +13,10 @@ const formatThaiDate = (iso) => {
   return isNaN(d)
     ? "-"
     : d.toLocaleDateString("th-TH", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "2-digit",
-      });
+      day: "2-digit",
+      month: "2-digit",
+      year: "2-digit",
+    });
 };
 
 const EmployeeHomePage = () => {
@@ -41,45 +41,46 @@ const EmployeeHomePage = () => {
 
         {/* การ์ดเล็กตรงแทบ Payroll */}
         <div className="header-middle">
-            <div
-              className={`mini-card ${window.location.pathname === "/employee" ? "active" : ""}`}
-              onClick={() => navigate("/employee")}>
-              <FaUser/>
-              <span>ข้อมูลส่วนตัว</span>
-            </div>
+          <div
+            className={`mini-card ${window.location.pathname === "/employee" ? "active" : ""}`}
+            onClick={() => navigate("/employee")}>
+            <FaUser />
+            <span>ข้อมูลส่วนตัว</span>
+          </div>
 
-            <div
-              className={`mini-card ${window.location.pathname === "/salary" ? "active" : ""}`}
-              onClick={() => navigate("/salary")}>
-              <FaMoneyCheckAlt />
-              <span>ข้อมูลเงินเดือน</span>
-            </div>
+          <div
+            className={`mini-card ${window.location.pathname === "/salary" ? "active" : ""}`}
+            onClick={() => navigate("/salary")}>
+            <FaMoneyCheckAlt />
+            <span>ข้อมูลเงินเดือน</span>
+          </div>
 
-            <div
-              className={`mini-card ${window.location.pathname === "/time" ? "active" : ""}`}
-              onClick={() => navigate("/time")}>
-              <FaHistory />
-              <span>ข้อมูลเวลาการทำงาน</span>
-            </div>
+          <div
+            className={`mini-card ${window.location.pathname === "/time" ? "active" : ""}`}
+            onClick={() => navigate("/time")}>
+            <FaHistory />
+            <span>ข้อมูลเวลาการทำงาน</span>
+          </div>
 
-            <div
-              className={`mini-card ${window.location.pathname === "/report" ? "active" : ""}`}
-              onClick={() => navigate("/report")}>
-              <FaExclamationCircle /> 
-              <span>แจ้งปัญหา</span>
-            </div>
+          <div
+            className={`mini-card ${window.location.pathname === "/report" ? "active" : ""}`}
+            onClick={() => navigate("/report")}>
+            <FaExclamationCircle />
+            <span>แจ้งปัญหา</span>
+          </div>
         </div>
 
         <div className="header-right">
-          <FaBell />
+
           <img src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t1.6435-9/66432336_2341250949495752_6935145544675229696_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeFrBT17u_BCRVC43TF5p4n9BboTGA4ubzIFuhMYDi5vMkqdnUvpdG11Mg6APFXnLBbTPQJ1n3Svu76I4ZnxVlaI&_nc_ohc=Z87OxZkiFt8Q7kNvwHfz_Hk&_nc_oc=AdkFLzipbcH25imsMR-GC49oohomr8J5GhkJ7Zjl6-VUiiMyPOrCUhbkmFG_4QOHxNQ&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=UK2JKMhlaRnz081vbeHKHA&oh=00_AffiEnDOyZv-wZ_5IDE9QBbGni-VdXgUTK9lb9-xp0ywVg&oe=69083BEE" alt="profile" className="profile-pic" />
-          <span className="employee-name">{employee.name}</span>
+          {/* <span className="employee-name">{employee.name}</span> */}
           <button
             className="btn logout-btn"
             onClick={() => {
               localStorage.removeItem("username");
               localStorage.removeItem("role");
-              window.location.reload();
+              localStorage.removeItem("lastPath"); 
+              window.location.href = "/"; 
             }}
           >
             Logout
@@ -100,8 +101,8 @@ const EmployeeHomePage = () => {
           <div className="detail-item"><FaCalendarAlt /> <strong>วันเริ่มงาน:</strong> {formatThaiDate(employee.startDate)}</div>
           <div className="detail-item"><FaUserTie /> <strong>ตำแหน่ง:</strong> {employee.role === "hr" ? "ฝ่ายบุคคล (HR)" : "พนักงาน"}</div>
           <div className="detail-item"><FaUniversity /> <strong>ธนาคาร:</strong> {employee.bankName || "-"}</div>
-          <div className="detail-item"><FaBriefcase  /> <strong>ประเภทพนักงาน:</strong> {employee.employeeType || "-"}</div>
-          <div className="detail-item"><FaCreditCard  /> <strong>เลขบัญชี:</strong> {employee.bankAccount || "-"}</div>
+          <div className="detail-item"><FaBriefcase /> <strong>ประเภทพนักงาน:</strong> {employee.employeeType || "-"}</div>
+          <div className="detail-item"><FaCreditCard /> <strong>เลขบัญชี:</strong> {employee.bankAccount || "-"}</div>
         </div>
       </div>
     </div>

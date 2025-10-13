@@ -6,7 +6,7 @@ import { employeesData } from "../data/employeesData";
 import payrollData from "../data/payrollData";
 import {
   FaMoneyCheckAlt, FaUser, FaBuilding,
-  FaIdCard, FaUserTie, FaPrint, FaHistory, FaBell, FaExclamationCircle
+  FaIdCard, FaUserTie, FaPrint, FaHistory,  FaExclamationCircle
 } from "react-icons/fa";
 
 const thMonthLabel = (ym) => {
@@ -176,9 +176,9 @@ const SalaryDetailPage = () => {
         </div>
 
         <div className="header-right">
-          <FaBell />
+          
           <img src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t1.6435-9/66432336_2341250949495752_6935145544675229696_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeFrBT17u_BCRVC43TF5p4n9BboTGA4ubzIFuhMYDi5vMkqdnUvpdG11Mg6APFXnLBbTPQJ1n3Svu76I4ZnxVlaI&_nc_ohc=Z87OxZkiFt8Q7kNvwHfz_Hk&_nc_oc=AdkFLzipbcH25imsMR-GC49oohomr8J5GhkJ7Zjl6-VUiiMyPOrCUhbkmFG_4QOHxNQ&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=UK2JKMhlaRnz081vbeHKHA&oh=00_AffiEnDOyZv-wZ_5IDE9QBbGni-VdXgUTK9lb9-xp0ywVg&oe=69083BEE" alt="profile" className="profile-pic" />
-          <span className="employee-name">{employee.name}</span>
+          {/* <span className="employee-name">{employee.name}</span> */}
           <button
             className="btn logout-btn"
             onClick={() => {
