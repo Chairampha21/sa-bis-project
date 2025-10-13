@@ -7,6 +7,7 @@ import HRSalary from "./pages/HRSalary";
 import NotFound from "./components/NotFound";
 import HROverviewPage from "./pages/HROverviewPage";
 import HRTimePage from "./pages/HRTimePage";
+import HRReport from "./pages/HRReport"
 // import EmployeeListPage from "./pages/EmployeeListPage";
 import EmployeeDetailPage from "./pages/EmployeeDetailPage";
 import HREmployeeSalaryPage from "./pages/HREmployeeSalaryPage";
@@ -83,6 +84,15 @@ function App() {
           element={
             user?.role?.toLowerCase() === "hr"
               ? <HRTimePage user={user} />
+              : <Navigate to="/" />
+          }
+        />
+
+        <Route 
+          path="/hrreport" 
+          element={
+            user?.role?.toLowerCase() === "hr"
+              ? <HRReport user={user} />
               : <Navigate to="/" />
           }
         />

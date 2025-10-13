@@ -137,7 +137,7 @@
   cursor: pointer;
   transition: 0.25s;
   font-weight: 600;
-  font-size: 0.72rem;
+  font-size: 0.8rem;
 }
 
 .hr-header-middle .mini-card:hover {
@@ -186,3 +186,4 @@
 .hr-header-right .logout-btn:hover {
   background: #f2f4f8;
 }
+

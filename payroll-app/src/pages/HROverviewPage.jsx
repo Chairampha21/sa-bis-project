@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { employeesData } from "../data/employeesData";
+// import { employeesData } from "../data/employeesData";
 import {
     FaUser,
     FaIdCard,
@@ -29,10 +29,10 @@ const HROverviewPage = () => {
     const navigate = useNavigate();
     const [period, setPeriod] = useState("1Y");
 
-    const loggedInUser = (localStorage.getItem("username") || "").toLowerCase();
-    const employee = employeesData.find(
-        (emp) => (emp.username || "").toLowerCase() === loggedInUser
-    );
+    // const loggedInUser = (localStorage.getItem("username") || "").toLowerCase();
+    // const employee = employeesData.find(
+    //     (emp) => (emp.username || "").toLowerCase() === loggedInUser
+    // );
 
     const pieData = [
         { name: "เงินเดือนพนักงาน", value: 520000 },
@@ -72,27 +72,11 @@ const HROverviewPage = () => {
                     </div>
 
                     <div
-                        className={`mini-card ${window.location.pathname === "/employeedetail" ? "active" : ""}`}
-                        onClick={() => navigate("/employeedetail")}
-                    >
-                        <FaIdCard />
-                        <span>ข้อมูลพนักงาน</span>
-                    </div>
-
-                    <div
                         className={`mini-card ${window.location.pathname.startsWith("/hrsalary") ? "active" : ""}`}
                         onClick={() => navigate("/hrsalary")}
                     >
                         <FaMoneyBillWave />
                         <span>ข้อมูลเงินเดือน</span>
-                    </div>
-
-                    <div
-                        className={`mini-card ${window.location.pathname === "/overview" ? "active" : ""}`}
-                        onClick={() => navigate("/overview")}
-                    >
-                        <FaChartBar />
-                        <span>ภาพรวมเงินเดือน</span>
                     </div>
 
                     <div
@@ -110,13 +94,31 @@ const HROverviewPage = () => {
                         <FaExclamationCircle />
                         <span>แจ้งปัญหา</span>
                     </div>
+
+                    {/* 🔽 เส้นแบ่ง (divider) */}
+                    <div className="divider"></div>
+
+                    <div
+                        className={`mini-card ${window.location.pathname === "/employeedetail" ? "active" : ""}`}
+                        onClick={() => navigate("/employeedetail")}
+                    >
+                        <FaIdCard />
+                        <span>ข้อมูลพนักงาน</span>
+                    </div>
+
+                    <div
+                        className={`mini-card ${window.location.pathname === "/overview" ? "active" : ""}`}
+                        onClick={() => navigate("/overview")}
+                    >
+                        <FaChartBar />
+                        <span>ภาพรวมเงินเดือน</span>
+                    </div>
                 </div>
 
-                {/* โปรไฟล์ด้านขวา */}
                 <div className="header-right">
                     <FaBell />
                     <img src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t1.6435-9/66432336_2341250949495752_6935145544675229696_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeFrBT17u_BCRVC43TF5p4n9BboTGA4ubzIFuhMYDi5vMkqdnUvpdG11Mg6APFXnLBbTPQJ1n3Svu76I4ZnxVlaI&_nc_ohc=Z87OxZkiFt8Q7kNvwHfz_Hk&_nc_oc=AdkFLzipbcH25imsMR-GC49oohomr8J5GhkJ7Zjl6-VUiiMyPOrCUhbkmFG_4QOHxNQ&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=UK2JKMhlaRnz081vbeHKHA&oh=00_AffiEnDOyZv-wZ_5IDE9QBbGni-VdXgUTK9lb9-xp0ywVg&oe=69083BEE" alt="profile" className="profile-pic" />
-                    <span className="employee-name">{employee.name}</span>
+                    {/* <span className="employee-name">{employee.name}</span> */}
                     <button
                         className="btn logout-btn"
                         onClick={() => {

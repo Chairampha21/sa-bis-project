@@ -203,3 +203,16 @@
   color: #007bff;
   font-weight: 600;
 }
+
+.hr-header-middle {
+  display: flex;
+  align-items: center;
+  gap: 0.72rem;
+}
+
+.divider {
+  width: 3px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.6);
+  margin: 0 8px;
+}

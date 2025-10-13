@@ -15,20 +15,26 @@
   border-radius: 12px;
   margin-bottom: 1rem;
 }
-.title-bar .spacer { flex: 1; }
+
+.title-bar .spacer {
+  flex: 1;
+}
 
 .back-chip {
   display: inline-flex;
   align-items: center;
   gap: .35rem;
-  background: rgba(255,255,255,.15);
-  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255, 255, 255, .15);
+  border: 1px solid rgba(255, 255, 255, .25);
   color: #fff;
   padding: .4rem .65rem;
   border-radius: 999px;
   cursor: pointer;
 }
-.back-chip:hover { background: rgba(255,255,255,.25); }
+
+.back-chip:hover {
+  background: rgba(255, 255, 255, .25);
+}
 
 .title {
   display: inline-flex;
@@ -37,13 +43,16 @@
   font-size: 1.25rem;
   font-weight: 800;
 }
-.title-icon { font-size: 1.2rem; }
+
+.title-icon {
+  font-size: 1.2rem;
+}
 
 /* ===== Panels ===== */
 .panel {
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
   padding: 1.25rem 1.5rem;
   margin-bottom: 1rem;
 }
@@ -61,16 +70,24 @@
 
 .emp-brief {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: .75rem 1rem;
   color: var(--gray-dark);
 }
-.emp-brief strong { color: var(--green-dark); }
-.month-select { padding: .35rem .5rem; border-radius: 8px; border: 1px solid rgba(0,0,0,0.15); }
+
+.emp-brief strong {
+  color: var(--green-dark);
+}
+
+.month-select {
+  padding: .35rem .5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
 
 .grid-2 {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 1rem;
 }
 
@@ -78,7 +95,7 @@
   background: #f9f9f9;
   border-radius: 10px;
   padding: 1rem;
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
 }
 
 .section-head {
@@ -93,9 +110,13 @@
   padding: .35rem 0;
   color: var(--gray-dark);
 }
-.row strong { color: var(--green-dark); }
+
+.row strong {
+  color: var(--green-dark);
+}
+
 .row.total {
-  border-top: 1px dashed rgba(0,0,0,0.2);
+  border-top: 1px dashed rgba(0, 0, 0, 0.2);
   margin-top: .35rem;
   padding-top: .6rem;
   font-weight: 700;
@@ -111,6 +132,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .netpay-amount {
   font-size: 1.5rem;
   font-weight: 800;
@@ -121,39 +143,47 @@
 /* Emp brief: 4 คอลัมน์ — ปรับสัดส่วนให้คอลัมน์ตัวกรองกว้างขึ้น */
 .emp-brief.emp-brief-4 {
   display: grid;
-  grid-template-columns: 1.1fr 1.1fr 1.6fr auto; /* เดิม repeat(4, ...) */
+  grid-template-columns: 1.1fr 1.1fr 1.6fr auto;
+  /* เดิม repeat(4, ...) */
   gap: .75rem 1rem;
   align-items: flex-start;
 }
 
 /* ลดขนาด select ให้พอดีบรรทัด */
 .month-select {
-  padding: .32rem .5rem;       /* เดิม .35rem .5rem */
+  padding: .32rem .5rem;
+  /* เดิม .35rem .5rem */
   border-radius: 8px;
-  border: 1px solid rgba(0,0,0,0.15);
-  max-width: 220px;            /* กันยาวเกิน */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  max-width: 220px;
+  /* กันยาวเกิน */
 }
 
 /* ปุ่มให้เล็กลง */
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: .4rem;                  /* เดิม .5rem */
+  gap: .4rem;
+  /* เดิม .5rem */
   align-items: flex-start;
   justify-content: flex-end;
 }
 
 .btn-export,
 .btn-export-outline {
-  padding: .38rem .6rem;       /* เดิม .5rem .75rem */
-  font-size: .9rem;            /* เดิม inherit (~1rem) */
-  border-radius: 6px;          /* เดิม 8px */
+  padding: .38rem .6rem;
+  /* เดิม .5rem .75rem */
+  font-size: .9rem;
+  /* เดิม inherit (~1rem) */
+  border-radius: 6px;
+  /* เดิม 8px */
   line-height: 1.2;
 }
 
 .btn-export svg,
 .btn-export-outline svg {
-  font-size: .95em;            /* ไอคอนย่อเล็กน้อย */
+  font-size: .95em;
+  /* ไอคอนย่อเล็กน้อย */
 }
 
 /* ปุ่มดาวน์โหลด */
@@ -162,6 +192,7 @@
   flex-wrap: wrap;
   gap: .5rem;
 }
+
 .btn-export {
   background: var(--green-dark);
   color: #fff;
@@ -173,7 +204,10 @@
   align-items: center;
   gap: .4rem;
 }
-.btn-export:hover { background: var(--green); }
+
+.btn-export:hover {
+  background: var(--green);
+}
 
 .btn-export-outline {
   background: transparent;
@@ -186,14 +220,22 @@
   align-items: center;
   gap: .4rem;
 }
-.btn-export-outline:hover { background: #f4fff6; }
+
+.btn-export-outline:hover {
+  background: #f4fff6;
+}
 
 /* Responsive: ลดคอลัมน์เมื่อตีบ */
 @media (max-width: 1024px) {
-  .emp-brief.emp-brief-4 { grid-template-columns: repeat(2, minmax(220px,1fr)); }
+  .emp-brief.emp-brief-4 {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
 }
+
 @media (max-width: 640px) {
-  .emp-brief.emp-brief-4 { grid-template-columns: 1fr; }
+  .emp-brief.emp-brief-4 {
+    grid-template-columns: 1fr;
+  }
 }
 
 .employee-header-top {
@@ -235,11 +277,380 @@
   color: var(--green-dark);
   font-weight: 700;
   border: 2px solid var(--green-dark);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
   transition: 0.3s;
 }
 
 .header-middle .personal-card:hover {
   background: var(--green-light);
   color: var(--white);
+}
+
+/* ===========================
+   PRINT E-PAYSLIP LAYOUT
+=========================== */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .payslip-print,
+  .payslip-print * {
+    visibility: visible;
+  }
+
+  .payslip-print {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 25px;
+    background: white;
+    font-family: "TH Sarabun New", sans-serif;
+    font-size: 14pt;
+  }
+
+  /* ตารางหลัก */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    border: 1px solid #000;
+    padding: 6px 10px;
+  }
+
+  th {
+    background: #cfe2ff;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  td {
+    vertical-align: top;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .right {
+    text-align: right;
+  }
+
+  /* หัวกระดาษ */
+  .payslip-header {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .payslip-header h2 {
+    margin: 0;
+    font-size: 18pt;
+  }
+
+  .payslip-header h3 {
+    margin: 0;
+    font-size: 16pt;
+    font-weight: bold;
+  }
+
+  /* หัวข้อส่วนรวม */
+  .section-title {
+    background: #90caf9;
+    font-weight: bold;
+    padding: 4px 8px;
+  }
+
+  /* กล่องรวมยอดสุทธิ */
+  .netpay-box {
+    text-align: right;
+    border: 2px solid #000;
+    font-weight: bold;
+    font-size: 16pt;
+    margin-top: 8px;
+    padding: 6px;
+  }
+
+  /* หมายเหตุ */
+  .note {
+    font-size: 12pt;
+    margin-top: 12px;
+  }
+}
+
+.payslip-print {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 18mm 20mm;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .payslip-print,
+  .payslip-print * {
+    visibility: visible !important;
+  }
+
+  .payslip-print {
+    position: relative;
+    width: 100%;
+    background: #fff;
+    color: #000;
+    padding: 10px 0;
+    font-family: "TH Sarabun New", sans-serif;
+    font-size: 6pt;
+    /* 🔹 ลดฟอนต์รวม */
+    line-height: 1.2;
+  }
+
+  .payslip-header {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .payslip-header h2 {
+    margin: 0;
+    font-size: 13pt;
+    font-weight: 700;
+  }
+
+  .payslip-header h3 {
+    margin: 2px 0 0;
+    font-size: 10pt;
+  }
+
+  /* ============ ตารางหลัก ============ */
+  table {
+    width: 95%;
+    margin: 0 auto 10px;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  th,
+  td {
+    border: 1px solid #333;
+    padding: 3px 4px;
+    vertical-align: middle;
+    word-break: break-word;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.1;
+    font-size: 6.5pt;
+    /* 🔹 ลดเฉพาะข้อความในเซลล์ */
+  }
+
+  th {
+    background: #edf3ff;
+    font-weight: 700;
+  }
+
+  /* 🔹 ให้เซลล์สูงอย่างน้อย 22px เพื่อไม่ชนกัน */
+  th,
+  td {
+    min-height: 22px;
+    height: auto;
+  }
+
+  /* 🔹 ซ่อนภาษาอังกฤษและ <br> ทั้งหมด */
+  .payslip-print th small,
+  .payslip-print td small,
+  .payslip-print th br,
+  .payslip-print td br {
+    display: none !important;
+  }
+
+  /* 🔹 แก้เซลล์ท้ายสุดของแถวแรกไม่ล้น */
+  .emp-table th,
+  .emp-table td {
+    width: 12.5%;
+  }
+
+  /* ตารางรายได้/รายการหัก */
+  .pay-table th[colspan="2"] {
+    background: #dce9ff;
+    font-size: 6pt;
+  }
+
+  .pay-table tfoot th,
+  .pay-table tfoot td {
+    background: #f4f8ff;
+    font-weight: 700;
+  }
+
+  /* กล่องสุทธิ */
+  .netpay-box {
+    border: 1.5px solid #000;
+    text-align: right;
+    font-size: 9.5pt;
+    font-weight: bold;
+    width: 94%;
+    margin: 8px auto 10px;
+    padding: 4px 6px;
+    background: #f8fbff;
+  }
+
+  /* หมายเหตุ */
+  .note {
+    border-top: 1px solid #000;
+    width: 94%;
+    margin: 10px auto 0;
+    padding-top: 4px;
+    font-size: 5.5pt;
+  }
+
+  /* ซ่อนส่วนอื่น */
+  .salary-container>*:not(.payslip-print),
+  .hr-header-top {
+    display: none !important;
+  }
+
+  .payslip-print th,
+  .payslip-print td {
+    word-wrap: break-word;
+    white-space: normal;
+  }
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 18mm 20mm;
+  }
+
+  /* ซ่อนทุกอย่างที่ไม่ใช่ payslip */
+  body * {
+    visibility: hidden !important;
+  }
+
+  .payslip-print,
+  .payslip-print * {
+    visibility: visible !important;
+  }
+
+  .payslip-print {
+    position: relative;
+    background: #fff;
+    color: #000;
+    width: 100%;
+    font-family: "TH Sarabun New", sans-serif;
+    font-size: 9pt; /* 🔹 ลดขนาดลงเล็กน้อย */
+    line-height: 1.1; /* 🔹 ลดระยะบรรทัด */
+    padding: 8px 0;
+  }
+
+  /* ---------- หัวกระดาษ ---------- */
+  .payslip-header {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .payslip-header h2 {
+    margin: 0;
+    font-size: 13pt;
+    font-weight: bold;
+  }
+
+  .payslip-header h3 {
+    margin: 3px 0 0;
+    font-size: 10pt;
+  }
+
+  /* ---------- ตาราง ---------- */
+  .payslip-print table {
+    width: 95%;
+    margin: 0 auto 8px;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  .payslip-print th,
+  .payslip-print td {
+    border: 1px solid #333;
+    padding: 3px 5px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: normal;
+    word-break: break-word;
+    font-size: 8.5pt; /* 🔹 ขนาดอักษรภายในตาราง */
+    line-height: 1.1;
+    min-height: 22px;
+  }
+
+  .payslip-print th {
+    background: #f0f5ff;
+    font-weight: bold;
+  }
+
+  /* ---------- ตารางข้อมูลพนักงาน ---------- */
+  .payslip-print .emp-table th,
+  .payslip-print .emp-table td {
+    width: 12.5%;
+  }
+
+  /* ---------- ตารางรายได้/รายการหัก ---------- */
+  .payslip-print .pay-table th[colspan="2"] {
+    background: #dce9ff;
+    font-size: 9pt;
+  }
+
+  .payslip-print .pay-table tfoot th,
+  .payslip-print .pay-table tfoot td {
+    background: #f5f8ff;
+    font-weight: 700;
+  }
+
+  /* ---------- กล่องสุทธิ ---------- */
+  .payslip-print .netpay-box {
+    border: 1px solid #000;
+    text-align: right;
+    font-size: 9.5pt;
+    font-weight: bold;
+    width: 95%;
+    margin: 8px auto 10px;
+    padding: 4px 6px;
+    background: #f9fbff;
+  }
+
+  /* ---------- หมายเหตุ ---------- */
+  .payslip-print .note {
+    border-top: 1px solid #000;
+    width: 95%;
+    margin: 8px auto 0;
+    padding-top: 5px;
+    font-size: 8.5pt;
+    line-height: 1.2;
+  }
+
+  /* ---------- ซ่อนส่วนอื่น ---------- */
+  .salary-container > *:not(.payslip-print),
+  .hr-header-top {
+    display: none !important;
+  }
+
+  /* ---------- ป้องกันข้อความซ้อน ---------- */
+  .payslip-print th small,
+  .payslip-print td small,
+  .payslip-print th br,
+  .payslip-print td br {
+    display: none !important;
+  }
+
+  /* ---------- ช่องพิเศษ: “ฝ่ายบุคคล (HR)” ---------- */
+  .payslip-print td {
+    word-wrap: break-word;
+    white-space: normal;
+  }
 }
