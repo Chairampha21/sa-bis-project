@@ -10,7 +10,6 @@ import {
   FaClock,
 } from "react-icons/fa";
 
-// ✅ ฟังก์ชันจำลองข้อมูลเวลาทำงาน
 const generateMonthlyData = (year, month) => {
   const daysInMonth = new Date(year, month, 0).getDate();
   const statuses = ["เข้างานตรงเวลา", "เข้าสาย", "ออกก่อนเวลา", "ทำ OT", "ขาดงาน", "วันหยุด"];

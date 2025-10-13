@@ -1,37 +1,41 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { employeesData } from "../data/employeesData";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2"; // ✅ เพิ่มตรงนี้
 import "./style/LoginPage.css";
-
-
+ 
 function LoginPage({ setUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
+ 
   const handleLogin = (e) => {
     e.preventDefault();
-
+ 
     const u = username.trim().toLowerCase();
     const p = password.trim();
-
-
-    // ตรวจสอบ username / password โดยไม่ต้องเลือก role
+ 
     const user = employeesData.find(
       (emp) =>
         (emp.username || "").toLowerCase().trim() === u &&
         (emp.password || "").trim() === p
     );
-
+ 
     if (user) {
+      // ✅ ล็อกอินสำเร็จ
+      Swal.fire({
+        icon: "success",
+        title: "เข้าสู่ระบบสำเร็จ!",
+        text: `ยินดีต้อนรับ ${user.username}`,
+        timer: 1500,
+        showConfirmButton: false,
+      });
+ 
       setUser(user);
       localStorage.setItem("username", user.username);
       localStorage.setItem("role", user.role);
-
-      // ✅ ถ้ามี lastPath → ไปหน้านั้นเลย
+ 
       const lastPath = localStorage.getItem("lastPath");
-
       if (lastPath && lastPath !== "/") {
         navigate(lastPath, { replace: true });
       } else if (user.role.toLowerCase() === "hr") {
@@ -39,9 +43,17 @@ function LoginPage({ setUser }) {
       } else {
         navigate("/employee", { replace: true });
       }
+    } else {
+      // ❌ username / password ผิด
+      Swal.fire({
+        icon: "error",
+        title: "เข้าสู่ระบบไม่สำเร็จ",
+        text: "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง!",
+        confirmButtonText: "ตกลง",
+      });
     }
   };
-
+ 
   return (
     <div className="login-container">
       <div className="login-box">
@@ -55,7 +67,7 @@ function LoginPage({ setUser }) {
             required
             autoComplete="username"
           />
-
+ 
           <input
             type="password"
             placeholder="Password..."
@@ -64,12 +76,12 @@ function LoginPage({ setUser }) {
             required
             autoComplete="current-password"
           />
-
+ 
           <button type="submit">Login</button>
         </form>
       </div>
     </div>
   );
 }
-
+ 
 export default LoginPage;

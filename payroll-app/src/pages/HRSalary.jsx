@@ -6,7 +6,7 @@ import { employeesData } from "../data/employeesData";
 import payrollData from "../data/payrollData";
 import {
     FaMoneyBillWave, FaUser, FaBuilding, FaChartBar,
-    FaIdCard, FaUserTie, FaPrint, FaHistory,  FaExclamationCircle
+    FaIdCard, FaUserTie, FaPrint, FaHistory, FaExclamationCircle
 } from "react-icons/fa";
 
 const thMonthLabel = (ym) => {
@@ -52,8 +52,31 @@ const HRSalary = () => {
 
     // payroll ของพนักงาน
     const myPayrolls = useMemo(() => {
-        const uname = employee?.username || "";
-        return (payrollData || []).filter((p) => p.username === uname);
+        if (!employee) return [];
+
+        const empCode = employee.employeeCode;
+        const uname = (employee.username || "").toLowerCase();
+
+        // รองรับทั้งกรณี payroll มี username หรือ employeeCode
+        return (payrollData || [])
+            .filter(
+                (p) =>
+                    (p.username && p.username.toLowerCase() === uname) ||
+                    (p.employeeCode && p.employeeCode === empCode)
+            )
+            .map((p) => ({
+                ...p,
+                // ✅ normalize key ให้ React ใช้ได้แน่นอน
+                month: p.month || p.payMonth || "",
+                baseSalary: Number(p.baseSalary || 0),
+                allowance: Number(p.allowance || 0),
+                ot: Number(p.ot || 0),
+                bonus: Number(p.bonus || 0),
+                tax: Number(p.tax || 0),
+                social: Number(p.social || 0),
+                provident: Number(p.provident || 0),
+                otherDeduct: Number(p.otherDeduct || 0),
+            }));
     }, [employee]);
 
     // เดือนทั้งหมดที่มีข้อมูล (YYYY-MM), เรียงใหม่ → เก่า
@@ -212,8 +235,8 @@ const HRSalary = () => {
                 </div>
 
                 <div className="header-right">
-                    
-                    <img src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t1.6435-9/66432336_2341250949495752_6935145544675229696_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeFrBT17u_BCRVC43TF5p4n9BboTGA4ubzIFuhMYDi5vMkqdnUvpdG11Mg6APFXnLBbTPQJ1n3Svu76I4ZnxVlaI&_nc_ohc=Z87OxZkiFt8Q7kNvwHfz_Hk&_nc_oc=AdkFLzipbcH25imsMR-GC49oohomr8J5GhkJ7Zjl6-VUiiMyPOrCUhbkmFG_4QOHxNQ&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=UK2JKMhlaRnz081vbeHKHA&oh=00_AffiEnDOyZv-wZ_5IDE9QBbGni-VdXgUTK9lb9-xp0ywVg&oe=69083BEE" alt="profile" className="profile-pic" />
+
+                    <img src="https://images-ext-1.discordapp.net/external/EyvjpwuQoXxpKE5AIreUblST0vJc78DGBF9C_-ngigI/%3Fq%3Dtbn%3AANd9GcR0ZzeG8-ZeLyAAncO2wy4G8XmcKet6r-DrBXN4F-ZLqQ%26s%3D10/https/encrypted-tbn0.gstatic.com/images?format=webp&width=559&height=559" alt="profile" className="profile-pic" />
                     {/* <span className="employee-name">{employee.name}</span> */}
                     <button
                         className="btn logout-btn"
@@ -410,7 +433,7 @@ const HRSalary = () => {
                             <th colSpan="2">รายการหัก</th>
                         </tr>
                         <tr>
-                            <th>จำนวน</th>
+                            <th>รายการ</th>
                             <th>จำนวนเงิน</th>
                             <th>รายการ</th>
                             <th>จำนวนเงิน</th>
@@ -418,25 +441,25 @@ const HRSalary = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td className="center">30.00</td>
+                            <td>เงินเดือนพื้นฐาน</td>
                             <td className="right">{thb(pay.baseSalary)}</td>
                             <td>ภาษีหัก ณ ที่จ่าย</td>
                             <td className="right">{thb(pay.tax)}</td>
                         </tr>
                         <tr>
-                            <td></td>
+                            <td>ค่าตำแหน่ง / สวัสดิการ</td>
                             <td className="right">{thb(pay.allowance)}</td>
                             <td>เงินประกันสังคม</td>
                             <td className="right">{thb(pay.social)}</td>
                         </tr>
                         <tr>
-                            <td></td>
+                            <td>OT (ค่าล่วงเวลา)</td>
                             <td className="right">{thb(pay.ot)}</td>
                             <td>กองทุนสำรองเลี้ยงชีพ</td>
                             <td className="right">{thb(pay.provident)}</td>
                         </tr>
                         <tr>
-                            <td></td>
+                            <td>โบนัส</td>
                             <td className="right">{thb(pay.bonus)}</td>
                             <td>อื่น ๆ</td>
                             <td className="right">{thb(pay.otherDeduct)}</td>

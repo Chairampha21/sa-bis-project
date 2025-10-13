@@ -15,6 +15,16 @@ import EmployeeTimePage from "./pages/EmployeeTimePage";
 import ReportIssuePage from "./pages/ReportIssuePage";
 import "./App.css";
 
+function PathTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    localStorage.setItem("lastPath", location.pathname);
+  }, [location]);
+
+  return null;
+}
+
 function App() {
   const [user, setUser] = useState(null);
 
@@ -27,7 +37,7 @@ function App() {
 
   return (
     <Router>
-      <PathTracker /> {/* ✅ ตัวช่วยจำ path ล่าสุด */}
+      <PathTracker />
       <Routes>
         <Route path="/" element={<LoginPage setUser={setUser} />} />
         {/* ==== EMPLOYEE ==== */}
@@ -128,17 +138,5 @@ function App() {
     </Router>
   );
 }
-
-function PathTracker() {
-  const location = useLocation();
-
-  useEffect(() => {
-    // บันทึก path ล่าสุดใน localStorage ทุกครั้งที่เปลี่ยนหน้า
-    localStorage.setItem("lastPath", location.pathname);
-  }, [location]);
-
-  return null;
-}
-
 
 export default App;

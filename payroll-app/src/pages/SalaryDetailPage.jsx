@@ -6,7 +6,7 @@ import { employeesData } from "../data/employeesData";
 import payrollData from "../data/payrollData";
 import {
   FaMoneyCheckAlt, FaUser, FaBuilding,
-  FaIdCard, FaUserTie, FaPrint, FaHistory,  FaExclamationCircle
+  FaIdCard, FaUserTie, FaPrint, FaHistory, FaExclamationCircle
 } from "react-icons/fa";
 
 const thMonthLabel = (ym) => {
@@ -52,9 +52,33 @@ const SalaryDetailPage = () => {
 
   // payroll ของพนักงาน
   const myPayrolls = useMemo(() => {
-    const uname = employee?.username || "";
-    return (payrollData || []).filter((p) => p.username === uname);
+    if (!employee) return [];
+
+    const empCode = employee.employeeCode;
+    const uname = (employee.username || "").toLowerCase();
+
+    // รองรับทั้งกรณี payroll มี username หรือ employeeCode
+    return (payrollData || [])
+      .filter(
+        (p) =>
+          (p.username && p.username.toLowerCase() === uname) ||
+          (p.employeeCode && p.employeeCode === empCode)
+      )
+      .map((p) => ({
+        ...p,
+        // ✅ normalize key ให้ React ใช้ได้แน่นอน
+        month: p.month || p.payMonth || "",
+        baseSalary: Number(p.baseSalary || 0),
+        allowance: Number(p.allowance || 0),
+        ot: Number(p.ot || 0),
+        bonus: Number(p.bonus || 0),
+        tax: Number(p.tax || 0),
+        social: Number(p.social || 0),
+        provident: Number(p.provident || 0),
+        otherDeduct: Number(p.otherDeduct || 0),
+      }));
   }, [employee]);
+
 
   // เดือนทั้งหมดที่มีข้อมูล (YYYY-MM), เรียงใหม่ → เก่า
   const allMonths = useMemo(
@@ -149,7 +173,7 @@ const SalaryDetailPage = () => {
           <div
             className={`mini-card ${window.location.pathname === "/employee" ? "active" : ""}`}
             onClick={() => navigate("/employee")}>
-            <FaUser/>
+            <FaUser />
             <span>ข้อมูลส่วนตัว</span>
           </div>
 
@@ -170,14 +194,14 @@ const SalaryDetailPage = () => {
           <div
             className={`mini-card ${window.location.pathname === "/report" ? "active" : ""}`}
             onClick={() => navigate("/report")}>
-            <FaExclamationCircle /> 
+            <FaExclamationCircle />
             <span>แจ้งปัญหา</span>
           </div>
         </div>
 
         <div className="header-right">
-          
-          <img src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t1.6435-9/66432336_2341250949495752_6935145544675229696_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeFrBT17u_BCRVC43TF5p4n9BboTGA4ubzIFuhMYDi5vMkqdnUvpdG11Mg6APFXnLBbTPQJ1n3Svu76I4ZnxVlaI&_nc_ohc=Z87OxZkiFt8Q7kNvwHfz_Hk&_nc_oc=AdkFLzipbcH25imsMR-GC49oohomr8J5GhkJ7Zjl6-VUiiMyPOrCUhbkmFG_4QOHxNQ&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=UK2JKMhlaRnz081vbeHKHA&oh=00_AffiEnDOyZv-wZ_5IDE9QBbGni-VdXgUTK9lb9-xp0ywVg&oe=69083BEE" alt="profile" className="profile-pic" />
+
+          <img src="https://images-ext-1.discordapp.net/external/EyvjpwuQoXxpKE5AIreUblST0vJc78DGBF9C_-ngigI/%3Fq%3Dtbn%3AANd9GcR0ZzeG8-ZeLyAAncO2wy4G8XmcKet6r-DrBXN4F-ZLqQ%26s%3D10/https/encrypted-tbn0.gstatic.com/images?format=webp&width=559&height=559" alt="profile" className="profile-pic" />
           {/* <span className="employee-name">{employee.name}</span> */}
           <button
             className="btn logout-btn"
@@ -209,7 +233,7 @@ const SalaryDetailPage = () => {
 
           <div className="col">
             <div className="row-item" style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "nowrap" }}>
-              
+
               <strong>เดือน:</strong>
               <select
                 className="month-select"
@@ -258,8 +282,8 @@ const SalaryDetailPage = () => {
           <>
             <div className="grid-2">
               {yearRows.map((r) => {
-                const income = (r.baseSalary||0)+(r.allowance||0)+(r.ot||0)+(r.bonus||0);
-                const deduct = (r.tax||0)+(r.social||0)+(r.provident||0)+(r.otherDeduct||0);
+                const income = (r.baseSalary || 0) + (r.allowance || 0) + (r.ot || 0) + (r.bonus || 0);
+                const deduct = (r.tax || 0) + (r.social || 0) + (r.provident || 0) + (r.otherDeduct || 0);
                 const net = income - deduct;
                 return (
                   <div className="card-section" key={r.month}>
@@ -327,6 +351,130 @@ const SalaryDetailPage = () => {
             </div>
           </>
         )}
+      </div>
+
+      {/* ===== PRINT LAYOUT (E-Payslip) ===== */}
+      <div className="payslip-print">
+        <div className="payslip-header">
+          <h2>บริษัท สายบริการสติ๊ก จำกัด</h2>
+          <h3>ใบแจ้งเงินได้อิเล็กทรอนิกส์</h3>
+        </div>
+
+        {/* ---------- ข้อมูลพนักงาน ---------- */}
+        <table className="emp-table">
+          <tbody>
+            <tr>
+              <th>รหัสพนักงาน</th>
+              <td>{empCode}</td>
+              <th>ชื่อพนักงาน</th>
+              <td>{employee.name}</td>
+              <th>ประเภทพนักงาน</th>
+              <td>เงินเดือน</td>
+              <th>ตำแหน่งงาน</th>
+              <td>{positionTitle}</td>
+            </tr>
+            <tr>
+              <th>รหัสแผนก</th>
+              <td>01</td>
+              <th>ชื่อแผนก</th>
+              <td>{employee.department}</td>
+              <th>งวดที่</th>
+              <td>1/1</td>
+              <th>งวดเดือน/ปี</th>
+              <td>{thMonthLabel(selectedMonth)} {buddhistYear(selectedYear)}</td>
+            </tr>
+            <tr>
+              <th>วันที่จ่ายเงิน</th>
+              <td colSpan="7">10/{selectedMonth?.slice(5) || "07"}/{buddhistYear(selectedYear)}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        {/* ---------- ตารางรายได้ / รายหัก ---------- */}
+        <table className="pay-table">
+          <thead>
+            <tr>
+              <th colSpan="2">รายได้</th>
+              <th colSpan="2">รายการหัก</th>
+            </tr>
+            <tr>
+              <th>รายการ</th>
+              <th>จำนวนเงิน</th>
+              <th>รายการ</th>
+              <th>จำนวนเงิน</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>เงินเดือนพื้นฐาน</td>
+              <td className="right">{thb(pay.baseSalary)}</td>
+              <td>ภาษีหัก ณ ที่จ่าย</td>
+              <td className="right">{thb(pay.tax)}</td>
+            </tr>
+            <tr>
+              <td>ค่าตำแหน่ง / สวัสดิการ</td>
+              <td className="right">{thb(pay.allowance)}</td>
+              <td>เงินประกันสังคม</td>
+              <td className="right">{thb(pay.social)}</td>
+            </tr>
+            <tr>
+              <td>OT (ค่าล่วงเวลา)</td>
+              <td className="right">{thb(pay.ot)}</td>
+              <td>กองทุนสำรองเลี้ยงชีพ</td>
+              <td className="right">{thb(pay.provident)}</td>
+            </tr>
+            <tr>
+              <td>โบนัส</td>
+              <td className="right">{thb(pay.bonus)}</td>
+              <td>อื่น ๆ</td>
+              <td className="right">{thb(pay.otherDeduct)}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th colSpan="2" className="right">รวมรายได้</th>
+              <td colSpan="2" className="right">{thb(incomeTotal)}</td>
+            </tr>
+            <tr>
+              <th colSpan="2" className="right">รวมรายการหัก</th>
+              <td colSpan="2" className="right">{thb(deductTotal)}</td>
+            </tr>
+          </tfoot>
+        </table>
+
+        {/* ---------- เงินสุทธิ ---------- */}
+        <div className="netpay-box">
+          เงินรับสุทธิ: <strong>{thb(netPay)}</strong>
+        </div>
+
+        {/* ---------- ยอดสะสม ---------- */}
+        <table className="summary-table">
+          <thead>
+            <tr><th colSpan="4" className="center">รายละเอียดยอดสะสม</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>รายได้สะสม</td><td className="right">303,339.00</td>
+              <td>เงินประกันสังคม</td><td className="right">5,250.00</td>
+            </tr>
+            <tr>
+              <td>ภาษีสะสม</td><td className="right">2,216.67</td>
+              <td>เงินสะสมกองทุนสำรองเลี้ยงชีพ</td><td className="right">0.00</td>
+            </tr>
+            <tr>
+              <td>ค่าเผื่ออื่น ๆ</td><td className="right">0.00</td>
+              <td colSpan="2"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        {/* ---------- หมายเหตุ ---------- */}
+        <div className="note">
+          <p><strong>หมายเหตุ:</strong></p>
+          <p>1. เอกสารนี้จัดทำขึ้นจากระบบอิเล็กทรอนิกส์ หากข้อมูลไม่ถูกต้อง โปรดแจ้งฝ่ายทรัพยากรบุคคลภายใน 7 วัน</p>
+          <p>2. เพื่อความถูกต้อง บริษัทขอสงวนสิทธิ์ในการใช้เอกสารนี้กับราชการ</p>
+          <p>3. เอกสารนี้จัดพิมพ์อัตโนมัติ ไม่ต้องมีลายมือชื่อฝ่ายบัญชี</p>
+        </div>
       </div>
     </div>
   );
